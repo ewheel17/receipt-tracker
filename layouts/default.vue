@@ -1,40 +1,47 @@
 <template>
   <v-app dark>
-    <v-toolbar :clipped-left="clipped" fixed app>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-    </v-toolbar>
+    <Toolbar :tabs="tabs"/>
     <v-content>
       <v-container>
-        <nuxt />
+        <nuxt/>
       </v-container>
     </v-content>
-    <v-footer app>
-      <v-spacer />
-      <span>&copy; Max Wheeler 2019</span>
-      <v-spacer />
-    </v-footer>
+    <BottomToolbar :tabs="tabs"/>
+    <!-- <Footer /> -->
   </v-app>
 </template>
 
 <script>
+import Toolbar from '@/components/layout_components/Toolbar'
+import BottomToolbar from '@/components/layout_components/BottomToolbar'
+// import Footer from '@/components/layout_components/Footer';
+
 export default {
+  components: {
+    Toolbar,
+    BottomToolbar
+    // Footer
+  },
   data() {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
+      title: 'Receipt Tracker',
+      tabs: [
         {
-          icon: 'apps',
-          title: 'Welcome',
-          to: '/'
+          name: 'Dashboard',
+          route: '/',
+          icon: 'dashboard'
         },
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Receipt Tracker'
+        {
+          name: 'Receipts',
+          route: 'receipts',
+          icon: 'folder'
+        },
+        {
+          name: 'Add Receipt',
+          route: 'add-receipt',
+          icon: 'add_circle'
+        }
+      ]
     }
   }
 }
